@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="50%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#090d11"/>
+    </linearGradient>
+
+    <!-- Accent Gradients -->
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#58a6ff"/>
+      <stop offset="100%" stop-color="#bc8cff"/>
+    </linearGradient>
+
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f6feb" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#8957e5" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <!-- Flow Node Gradients -->
+    <linearGradient id="nodeGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#21262d"/>
+      <stop offset="100%" stop-color="#30363d"/>
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 42px; fill: #ffffff; }
+    .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 500; font-size: 20px; fill: #8b949e; }
+    .badge-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 600; font-size: 13px; fill: #58a6ff; }
+    .node-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; fill: #c9d1d9; font-weight: 500; }
+    .node-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; fill: #58a6ff; font-weight: 700; }
+    
+    /* Animations for dynamic background aspect */
+    @keyframes dash {
+      to {
+        stroke-dashoffset: -40;
+      }
+    }
+    @keyframes pulse {
+      0% { opacity: 0.3; transform: scale(0.98); }
+      50% { opacity: 0.7; transform: scale(1.02); }
+      100% { opacity: 0.3; transform: scale(0.98); }
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .animated-line {
+      stroke-dasharray: 8, 8;
+      animation: dash 2s linear infinite;
+    }
+    .pulse-element {
+      animation: pulse 4s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .floating-card {
+      animation: float 5s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect width="1200" height="340" rx="16" fill="url(#bgGrad)" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Background Dynamic Grid Grid & Orbs -->
+  <g opacity="0.15">
+    <circle cx="150" cy="80" r="180" fill="#1f6feb" filter="url(#glow)" class="pulse-element"/>
+    <circle cx="1050" cy="260" r="200" fill="#8957e5" filter="url(#glow)" class="pulse-element" style="animation-delay: -2s;"/>
+    
+    <path d="M0 60 H1200 M0 120 H1200 M0 180 H1200 M0 240 H1200 M0 300 H1200" stroke="#30363d" stroke-width="1"/>
+    <path d="M150 0 V340 M300 0 V340 M450 0 V340 M600 0 V340 M750 0 V340 M900 0 V340 M1050 0 V340" stroke="#30363d" stroke-width="1"/>
+  </g>
+
+  <!-- Dynamic Data Flow Lines (Background Layer behind Text & Foreground Cards) -->
+  <g opacity="0.4">
+    <!-- Connecting Git-for-Data Pipeline visualization in upper right & sides -->
+    <path d="M 800 90 L 920 90 Q 950 90 950 120 L 950 140" fill="none" stroke="#58a6ff" stroke-width="2" class="animated-line"/>
+    <path d="M 950 190 L 950 210 Q 950 240 980 240 L 1080 240" fill="none" stroke="#bc8cff" stroke-width="2" class="animated-line"/>
+    <path d="M 100 240 L 250 240 Q 280 240 280 210 L 280 180" fill="none" stroke="#238636" stroke-width="2" class="animated-line"/>
+  </g>
+
+  <!-- Decorative Background Pills / Cards (Low opacity to keep foreground distinct) -->
+  <g filter="url(#dropShadow)" opacity="0.85" class="floating-card">
+    <!-- Mini Flow Node 1 -->
+    <rect x="850" y="50" width="160" height="50" rx="8" fill="url(#nodeGrad1)" stroke="#30363d" stroke-width="1"/>
+    <circle cx="875" cy="75" r="10" fill="#238636"/>
+    <text x="875" y="79" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">v1</text>
+    <text x="895" y="71" class="node-title">Raw Dataset</text>
+    <text x="895" y="86" class="node-text">100 GB S3 Bucket</text>
+  </g>
+
+  <g filter="url(#dropShadow)" opacity="0.85" class="floating-card" style="animation-delay: -2.5s;">
+    <!-- Mini Flow Node 2 -->
+    <rect x="980" y="215" width="170" height="50" rx="8" fill="url(#nodeGrad1)" stroke="#30363d" stroke-width="1"/>
+    <circle cx="1005" cy="240" r="10" fill="#8957e5"/>
+    <text x="1005" y="244" font-family="sans-serif" font-size="10" fill="#fff" text-anchor="middle">v2</text>
+    <text x="1025" y="236" class="node-title">Zero-Copy Branch</text>
+    <text x="1025" y="251" class="node-text">Main / Experiment</text>
+  </g>
+
+  <!-- FOREGROUND CONTENT (Guaranteed High Contrast & Visible) -->
+  <g transform="translate(60, 0)">
+    <!-- Top Pill Badge -->
+    <g transform="translate(0, 50)">
+      <rect width="250" height="30" rx="15" fill="#1f6feb" fill-opacity="0.2" stroke="#1f6feb" stroke-opacity="0.5" stroke-width="1"/>
+      <circle cx="18" cy="15" r="6" fill="#3fb950"/>
+      <text x="32" y="20" class="badge-text">CURATED ECOSISTEM 2026</text>
+    </g>
+
+    <!-- Main Title with Gradient Accent -->
+    <text x="0" y="130" class="title">
+      Awesome Data Version Control
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="168" class="subtitle">
+      Git-for-Data • Dataset Versioning • ML Artifact &amp; Lakehouse Management
+    </text>
+
+    <!-- Feature Chips / Tags -->
+    <g transform="translate(0, 205)">
+      <!-- Tag 1 -->
+      <rect x="0" y="0" width="130" height="32" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
+      <text x="15" y="21" font-family="sans-serif" font-size="13" fill="#c9d1d9" font-weight="600">📦 Data Lakes</text>
+
+      <!-- Tag 2 -->
+      <rect x="142" y="0" width="145" height="32" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
+      <text x="157" y="21" font-family="sans-serif" font-size="13" fill="#c9d1d9" font-weight="600">⚡ Zero-Copy Git</text>
+
+      <!-- Tag 3 -->
+      <rect x="299" y="0" width="165" height="32" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
+      <text x="314" y="21" font-family="sans-serif" font-size="13" fill="#c9d1d9" font-weight="600">🤖 MLOps Artifacts</text>
+
+      <!-- Tag 4 -->
+      <rect x="476" y="0" width="140" height="32" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
+      <text x="491" y="21" font-family="sans-serif" font-size="13" fill="#c9d1d9" font-weight="600">🗄️ In-DB Version</text>
+    </g>
+
+    <!-- Bottom Line Accent -->
+    <rect x="0" y="265" width="700" height="2" rx="1" fill="url(#primaryGrad)"/>
+  </g>
+</svg>
