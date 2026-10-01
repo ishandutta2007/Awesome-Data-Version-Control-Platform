@@ -50,7 +50,7 @@ Below is a curated comparison of leading SaaS & managed cloud platforms for data
 
 ## 🔓 Open-Source GitHub Projects
 
-The data version control ecosystem boasts a **mature, production-proven open-source standard**. The list below is sorted by **GitHub Star Count (Descending)**, featuring official social badges linked directly to each project's stargazers page:
+The data version control ecosystem boasts a **mature, production-proven open-source standard**. The list below is sorted by **GitHub Stars_Count (Descending)**, featuring official social badges linked directly to each project's stargazers page:
 
 1. **[MLflow](https://github.com/mlflow/mlflow)** [![Stars](https://img.shields.io/github/stars/mlflow/mlflow?style=social&color=white)](https://github.com/mlflow/mlflow/stargazers) 🤖  
    *Open source platform for the machine learning lifecycle, featuring MLflow Model Registry and Artifact Store for versioning datasets and models.*
